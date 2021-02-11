@@ -1,6 +1,6 @@
 # Vimplayer
 ## Control your players with vim
-### Supports [Moc](https://github.com/jonsafari/mocp), [cmus](https://github.com/cmus/cmus) and other :wink:
+### Supports [Moc](https://github.com/jonsafari/mocp), [cmus](https://github.com/cmus/cmus) and other... :wink:
 
 ### Install
 Add this to your `.vimrc` :
