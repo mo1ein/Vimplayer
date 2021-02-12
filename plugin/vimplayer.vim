@@ -6,9 +6,9 @@
 "endfunction
 
 " default player is vlc
-let s:which_player = 'vlc'
+let s:which_player = ''
 
-if exists(g:default_player)
+if exists('g:default_player')
     let s:which_player = g:default_player
 endif
 
