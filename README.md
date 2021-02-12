@@ -3,6 +3,7 @@
 Supports many cool players like [Spotify](https://www.spotify.com/us/), [vlc](https://www.videolan.org/vlc/index.html), [Moc](https://github.com/jonsafari/mocp), [cmus](https://github.com/cmus/cmus), [mpv](https://mpv.io/), [RhythmBox](https://github.com/GNOME/rhythmbox), [mpd](https://www.musicpd.org/), web browsers and others :wink:
 
 ## Installation
+First of all install [Playerctl](https://github.com/altdesktop/playerctl) and <br>
 If you use [vim-plug](https://github.com/junegunn/vim-plug), add this line to your ```~/.vimrc``` :
 ```
 Plug 'mo1ein/Vimplayer'
