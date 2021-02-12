@@ -1,4 +1,4 @@
-*Vimplayer.txt* control players with vim =)
+*Vimplayer.txt*   control players with vim =)
 
             _    ___              ____  __
            | |  / (_)___ ___     / __ \/ /___ ___  _____  _____
@@ -7,16 +7,49 @@
            |___/_/_/ /_/ /_/  /_/   /_/\__,_/\__, /\___/_/
                                             /____/
 
-                         written by <3 mo1ein
+
+
+=============================================================================
+CONTENTS                                                 *Vimplayer-contents*
+
+Intro...................................|Vimplayer-intro|
+Usage...................................|Vimplayer-usage|
+License.................................|Vimplayer-license|
+Contributing............................|Vimplayer-contributing|
+
+
+=============================================================================
+1. Intro                                                    *Vimplayer-intro*
+
+Vimplayer can control your musicplayers without exiting vim because
+exiting from vim is hard ;)
+
+
+=============================================================================
+2. Usage                                                    *Vimplayer-usage*
+
+The  :Pnext   command play next music from your player
+
+The  :Prev   command play next music from your player
+
+The  :Current   command show the title of current music
+
+The  :Pp   command toggle play/pause from your player
+
+The  :Repeat  command toggle play/pause from your player
+
+The  :Shuffle  command toggle shuffle on/off from your player
+
+The  :Autonext   command toggle autonext on/off from your player
+
 
 ==============================================================================
-CONTENTS                                                     *Vimplayer-contents*
-Introduction                  |Vimplayer-introduction|
-Usage                         |Vimplayer-usage|
-Commands                      |Vimplayer-commands|
-Configuration                 |Vimplayer-configuration|
-Search order                  |Vimplayer-search-order|
-Variables                     |Vimplayer-variables|
-User Variables                |Vimplayer-user-variables|
-Troubleshooting               |Vimplayer-troubleshooting|
-and continue ...
+3. License                                                 *Vimplayer-license*
+
+Vimplayer is GPLv3 licensed.
+
+
+==============================================================================
+4. Contributing                                       *Vimplayer-contributing*
+
+todo: write how?
