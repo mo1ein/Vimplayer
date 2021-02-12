@@ -1,22 +1,20 @@
 
-function! s:control(verb)
-    " if player is runnig/installed?
-    let w:detect_player = system('pgrep cmus')
-    let w:which_player = 'not'
-    if w:detect_player == ''
-        "todo: when both running? decision"
-        let w:detect_player = system('pgrep moc')
-        if w:detect_player == ''
-            echo "Please run/install your player "
-        else
-            let w:which_player = 'moc'
-        endif
-    else
-        let w:which_player = 'cmus'
-    endif
+""function! install()
+""   let w:is_installed = system('whatis playerctl')
+""   if is_installed == 'playerctl: nothing appropriate.'
+"       / todo: install /
+"endfunction
 
+" default player is vlc
+let s:which_player = 'vlc'
+
+if exists(g:default_player)
+    let s:which_player = g:default_player
+endif
+
+function! s:control(verb)
     " if moc is running ..."
-    if w:which_player == 'moc'
+    if s:which_player == 'mocp'
         echo "moc playing..."
         if a:verb == "Play"
             let w:info = system('mocp -G && mocp -i')
@@ -64,48 +62,51 @@ function! s:control(verb)
             sleep 2
             redraw!
         endif
-    " if cmus is running ..."
-    elseif w:which_player == 'cmus'
-        echo "cmus playing..."
+    " if other player is running ..."
+    else
+        "/ todo: player name show /"
+        echo "playing..."
         if a:verb == "Play"
-            let w:info = system('cmus-remote -u -Q')
-            let w:name = split(w:info, '\n')       " music title
-            echo w:name[6][10:] '-' w:name[4][10:]
-            sleep 2
-            redraw!
-        elseif a:verb == "Pnext"
-            let w:info = system('cmus-remote --next -Q')
-            let w:name = split(w:info, '\n')
-            sleep 2
-            redraw!
-        elseif a:verb == "Prev"
-            let w:info = system('cmus-remote --prev -Q')
-            let w:name = split(w:info, '\n')
-            echo w:name[6][10:] '-' w:name[4][10:]
-            sleep 2
-            redraw!
-        elseif a:verb == "Current"
-            let w:info = system('cmus-remote -Q')
-            let w:name = split(w:info, '\n')
-            echo w:name[6][10:] '-' w:name[4][10:]
-            sleep 2
-            redraw!
-        elseif a:verb == "Shuffle"
-            let w:info = system('cmus-remote --shuffle')
-           " / todo: know which state is change /
-            let w:info = 'Shuffle toggled :)'
+            "todo: print play state"
+            let w:info = system('playerctl --player=' . s:which_player . ' play-pause && playerctl --player=' . s:which_player . ' metadata --format "Now playing: {{ title }}"')
             echo w:info
             sleep 2
             redraw!
+        elseif a:verb == "Pnext"
+            let w:info = system('playerctl --player=' . s:which_player . ' next && playerctl --player=' . s:which_player . ' metadata --format "Now playing: {{ title }}"')
+            echo w:info
+            sleep 2
+            redraw!
+        elseif a:verb == "Prev"
+            let w:info = system('playerctl --player=' . s:which_player . ' previous && playerctl --player=' . s:which_player . ' metadata --format "Now playing: {{ title }}"')
+            echo w:info
+            sleep 2
+            redraw!
+        elseif a:verb == "Current"
+            let w:info = system('playerctl --player=' . s:which_player . ' metadata --format "Now playing: {{ title }}"')
+            echo w:info
+            sleep 2
+            redraw!
+        elseif a:verb == "Shuffle"
+            "/ todo: check shuffle status and toggle /"
+            let w:info = system('playerctl --player=' . s:which_player . ' shuffle off')
+            "playerctl --player=s:which_player shuffle on"
+           " / todo: know which state is change /
+            let w:info = 'Shuffle toggled :)'
+            echo w:info
+            sleep 1
+            redraw!
         elseif a:verb == "Repeat"                   " toggle repeat playlist after end all songs
-           let w:info = system('cmus-remote -C "toggle repeat"')
+            "/ todo: know previous state /"
+           let w:info = system('playerctl --player=' . s:which_player . ' loop Playlist')
            " / todo: know which state is change /
            let w:info = 'Repeat toggled :)'
            echo w:info
-           sleep 2
+           sleep 1
            redraw!
        elseif a:verb == "Autonext"                  " toggle repeat one song forever
-            let w:info = system('cmus-remote -C "toggle repeat_current"')
+            "(Track, previous state)"
+           let w:info = system('playerctl --player=' . s:which_player ' loop Track')
            " / todo: know which state is change /
             let w:info = 'Autonext toggled :)'
             echo w:info
