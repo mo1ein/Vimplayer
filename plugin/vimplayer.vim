@@ -65,7 +65,6 @@ function! s:control(verb)
     " if other player is running ..."
     else
         "/ todo: player name show /"
-        echo "playing..."
         if a:verb == "Play"
             "todo: print play state"
             let w:info = system('playerctl --player=' . s:which_player . ' play-pause && playerctl --player=' . s:which_player . ' metadata --format "Now playing: {{ title }}"')
@@ -74,11 +73,13 @@ function! s:control(verb)
             redraw!
         elseif a:verb == "Pnext"
             let w:info = system('playerctl --player=' . s:which_player . ' next && playerctl --player=' . s:which_player . ' metadata --format "Now playing: {{ title }}"')
+            echo "playing..."
             echo w:info
             sleep 2
             redraw!
         elseif a:verb == "Prev"
             let w:info = system('playerctl --player=' . s:which_player . ' previous && playerctl --player=' . s:which_player . ' metadata --format "Now playing: {{ title }}"')
+            echo "playing..."
             echo w:info
             sleep 2
             redraw!
@@ -87,13 +88,15 @@ function! s:control(verb)
             echo w:info
             sleep 2
             redraw!
-        elseif a:verb == "Shuffle"
-            "/ todo: check shuffle status and toggle /"
-            let w:info = system('playerctl --player=' . s:which_player . ' shuffle off')
-            "playerctl --player=s:which_player shuffle on"
-           " / todo: know which state is change /
-            let w:info = 'Shuffle toggled :)'
-            echo w:info
+        elseif a:verb == "Shuffle"                 " toggle shuffle
+            let w:is_shuffle = split(system('playerctl --player=' . s:which_player . ' shuffle'), '\n')
+            if w:is_shuffle[0] == 'Off'
+                let w:info = system('playerctl --player=' . s:which_player . ' shuffle on')
+                echom 'Shuffle on'
+            elseif w:is_shuffle[0] == 'On'
+                let w:info = system('playerctl --player=' . s:which_player . ' shuffle off')
+                echom 'Shuffle off'
+            endif
             sleep 1
             redraw!
         elseif a:verb == "Repeat"                   " toggle repeat playlist after end all songs
