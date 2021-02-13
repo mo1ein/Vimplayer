@@ -14,6 +14,7 @@ CONTENTS                                                 *Vimplayer-contents*
 
 Intro...................................|Vimplayer-intro|
 Usage...................................|Vimplayer-usage|
+Configuration ..........................|Vimplayer-config|
 License.................................|Vimplayer-license|
 Contributing............................|Vimplayer-contributing|
 
@@ -43,13 +44,23 @@ The  :Shuffle  command toggle shuffle on/off from your player
 The  :Autonext   command toggle autonext on/off from your player
 
 
+=============================================================================
+3. Configuration                                           *Vimplayer-config*
+
+You can set your default variable like:
+
+    g:default_player = 'your player'
+
+Default: vlc
+
+
 ==============================================================================
-3. License                                                 *Vimplayer-license*
+4. License                                                 *Vimplayer-license*
 
 Vimplayer is GPLv3 licensed.
 
 
 ==============================================================================
-4. Contributing                                       *Vimplayer-contributing*
+5. Contributing                                       *Vimplayer-contributing*
 
 todo: write how?
