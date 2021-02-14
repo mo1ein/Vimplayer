@@ -1,5 +1,5 @@
 # Vimplayer
-- [Watch how works](https://youtu.be/jPfP5h8UKxA)
+- [Watch how it works](https://youtu.be/jPfP5h8UKxA)
 ## Control your players with vim
 Supports many cool players like [Spotify](https://www.spotify.com/us/), [vlc](https://www.videolan.org/vlc/index.html), [Moc](https://github.com/jonsafari/mocp), [cmus](https://github.com/cmus/cmus), [mpv](https://mpv.io/), [RhythmBox](https://github.com/GNOME/rhythmbox), [mpd](https://www.musicpd.org/), web browsers and others :wink:
 
