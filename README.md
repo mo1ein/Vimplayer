@@ -1,6 +1,5 @@
 # Vimplayer
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jPfP5h8UKxA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+- [Watch how works](https://youtu.be/jPfP5h8UKxA)
 ## Control your players with vim
 Supports many cool players like [Spotify](https://www.spotify.com/us/), [vlc](https://www.videolan.org/vlc/index.html), [Moc](https://github.com/jonsafari/mocp), [cmus](https://github.com/cmus/cmus), [mpv](https://mpv.io/), [RhythmBox](https://github.com/GNOME/rhythmbox), [mpd](https://www.musicpd.org/), web browsers and others :wink:
 
