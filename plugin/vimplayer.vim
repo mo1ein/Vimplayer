@@ -91,6 +91,7 @@ function! s:control(verb)
             echo w:info[0]
             sleep 2
             redraw!
+            "/ todo: add feature to see status of shuffle, repeat and autonext /"
         elseif a:verb == "Shuffle"                 " toggle shuffle
             let w:is_shuffle = split(system('playerctl --player=' . s:which_player . ' shuffle'), '\n')
             if w:is_shuffle[0] == 'Off'
@@ -103,19 +104,25 @@ function! s:control(verb)
             sleep 1
             redraw!
         elseif a:verb == "Repeat"                   " toggle repeat playlist after end all songs
-            "/ todo: know previous state /"
-           let w:info = system('playerctl --player=' . s:which_player . ' loop Playlist')
-           " / todo: know which state is change /
-           let w:info = 'Repeat toggled :)'
-           echo w:info
-           sleep 1
-           redraw!
-       elseif a:verb == "Autonext"                  " toggle repeat one song forever
-            "(Track, previous state)"
-           let w:info = system('playerctl --player=' . s:which_player ' loop Track')
-           " / todo: know which state is change /
-            let w:info = 'Autonext toggled :)'
-            echo w:info
+            let w:is_repeat = split(system('playerctl --player=' . s:which_player . ' loop'), '\n')
+            if w:is_repeat[0] == 'Playlist'
+                let w:info = system('playerctl --player=' . s:which_player . ' loop none')
+                echom 'Repeat Off'
+            else
+                let w:info = system('playerctl --player=' . s:which_player . ' loop playlist')
+                echom 'Repeat On'
+            endif
+            sleep 1
+            redraw!
+        elseif a:verb == "Autonext"                  " toggle repeat one song forever
+            let w:is_autonext = split(system('playerctl --player=' . s:which_player . ' loop'), '\n')
+            if w:is_autonext[0] == 'Track'
+                let w:info = system('playerctl --player=' . s:which_player . ' loop none')
+                echom 'Autonext On'
+            else
+                let w:info = system('playerctl --player=' . s:which_player . ' loop Track')
+                echom 'Autonext Off'
+            endif
             sleep 2
             redraw!
         endif
