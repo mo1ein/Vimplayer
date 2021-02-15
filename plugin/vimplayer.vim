@@ -15,50 +15,48 @@ endif
 function! s:control(verb)
     " if moc is running ..."
     if s:which_player == 'mocp'
-        echo "moc playing..."
         if a:verb == "Play"
-            let w:info = system('mocp -G && mocp -i')
-            let w:name = split(w:info, '\n')       " music title
-            echo w:name[2][7:]
+            let w:is_playing = split(system('mocp -i', ' \n'))
+            if w:is_playing[1] == 'PLAY'
+                let w:name = split(system('mocp -G && mocp -i'), '\n') " music title
+                echom 'Paused : ' . w:name[2][7:]
+            else
+                let w:name = split(system('mocp -G && mocp -i'), '\n') " music title
+                echom 'Playing : ' . w:name[2][7:]
+            endif
             sleep 2
             redraw!
         elseif a:verb == "Pnext"
-            let w:info = system('mocp -f && sleep 0.2 && mocp -i')
-            let w:name = split(w:info, '\n')
-            echo w:name[2][7:]
+            let w:name = split(system('mocp -f && sleep 0.2 && mocp -i'), '\n')
+            echom 'Playing : ' . w:name[2][7:]
             sleep 2
             redraw!
         elseif a:verb == "Prev"
-            let w:info = system('mocp -r && sleep 0.2 && mocp -i')
-            let w:name = split(w:info, '\n')
-            echo w:name[2][7:]
+            let w:name = split(system('mocp -r && sleep 0.2 && mocp -i'), '\n')
+            echom 'Playing : ' . w:name[2][7:]
             sleep 2
             redraw!
         elseif a:verb == "Current"
-            let w:info = system('mocp -i')
-            let w:name = split(w:info, '\n')
-            echo w:name[2][7:]
+            let w:name = split(system('mocp -i'), '\n')
+            echom 'Now playing : ' . w:name[2][7:]
             sleep 2
             redraw!
         elseif a:verb == "Shuffle"
             let w:info = system('mocp -t shuffle')
            " / todo: know which state is change /
-            let w:info = 'Shuffle toggled :)'
-            echo w:info
+            echom 'Shuffle toggled :)'
             sleep 2
             redraw!
         elseif a:verb == "Repeat"                 " Repeat all playlist
             let w:info = system('mocp -t repeat')
            " / todo: know which state is change /
-            let w:info = 'Repeat toggled :)'
-            echo w:info
+            echom 'Repeat toggled :)'
             sleep 2
             redraw!
         elseif a:verb == "Autonext"
             let w:info = system('mocp -t n')
            " / todo: know which state is change /
-            let w:info = 'Autonext toggled :)'
-            echo w:info
+            echom 'Autonext toggled :)'
             sleep 2
             redraw!
         endif
