@@ -37,7 +37,7 @@ The  :Current   command show the title of current music
 
 The  :Pp   command toggle play/pause from your player
 
-The  :Repeat  command toggle play/pause from your player
+The  :Repeat  command toggle repeat playlist on/off from your player
 
 The  :Shuffle  command toggle shuffle on/off from your player
 
