@@ -5,23 +5,23 @@
 "       / todo: install /
 "endfunction
 
-" default player is vlc
-let s:which_player = 'vlc'
-
 if exists('g:default_player')
     let s:which_player = g:default_player
+else
+    " default player is vlc
+    let s:which_player = 'vlc'
 endif
 
 function! s:control(verb)
-    " if moc is running ..."
+    " if moc is running ...
     if s:which_player == 'mocp'
         if a:verb == "Play"
             let w:is_playing = split(system('mocp -i', ' \n'))
             if w:is_playing[1] == 'PLAY'
-                let w:name = split(system('mocp -G && mocp -i'), '\n') " music title
+                let w:name = split(system('mocp -G && mocp -i'), '\n')
                 echom 'Paused : ' . w:name[2][7:]
             else
-                let w:name = split(system('mocp -G && mocp -i'), '\n') " music title
+                let w:name = split(system('mocp -G && mocp -i'), '\n')
                 echom 'Playing : ' . w:name[2][7:]
             endif
             sleep 2
@@ -36,33 +36,29 @@ function! s:control(verb)
             echom 'Playing : ' . w:name[2][7:]
             sleep 2
             redraw!
-        elseif a:verb == "Current"
+        elseif a:verb == "Current"                " current music info
             let w:name = split(system('mocp -i'), '\n')
             echom 'Now playing : ' . w:name[2][7:]
             sleep 2
             redraw!
-        elseif a:verb == "Shuffle"
+        elseif a:verb == "Shuffle"                " toggle shuffle
             let w:info = system('mocp -t shuffle')
-           " / todo: know which state is change /
             echom 'Shuffle toggled :)'
             sleep 2
             redraw!
-        elseif a:verb == "Repeat"                 " Repeat all playlist
+        elseif a:verb == "Repeat"                 " toggle repeat playlist after end all songs
             let w:info = system('mocp -t repeat')
-           " / todo: know which state is change /
             echom 'Repeat toggled :)'
             sleep 2
             redraw!
-        elseif a:verb == "Autonext"
+        elseif a:verb == "Autonext"               " toggle repeat one music forever
             let w:info = system('mocp -t n')
-           " / todo: know which state is change /
             echom 'Autonext toggled :)'
             sleep 2
             redraw!
         endif
-    " if other player is running ..."
+    " if other player is running ...
     else
-        "/ todo: player name show /"
         if a:verb == "Play"
             let w:is_playing = split(system('playerctl --player=' . s:which_player . ' status', ' \n'))
             if w:is_playing[0] == 'Playing'
@@ -84,12 +80,11 @@ function! s:control(verb)
             echo w:info[0]
             sleep 2
             redraw!
-        elseif a:verb == "Current"
+        elseif a:verb == "Current"                 " current music info
             let w:info = split(system('playerctl --player=' . s:which_player . ' metadata --format "Now playing: {{ title }}"'), '\n')
             echo w:info[0]
             sleep 2
             redraw!
-            "/ todo: add feature to see status of shuffle, repeat and autonext /"
         elseif a:verb == "Shuffle"                 " toggle shuffle
             let w:is_shuffle = split(system('playerctl --player=' . s:which_player . ' shuffle'), '\n')
             if w:is_shuffle[0] == 'Off'
@@ -112,7 +107,7 @@ function! s:control(verb)
             endif
             sleep 1
             redraw!
-        elseif a:verb == "Autonext"                  " toggle repeat one song forever
+        elseif a:verb == "Autonext"                  " toggle repeat one music forever
             let w:is_autonext = split(system('playerctl --player=' . s:which_player . ' loop'), '\n')
             if w:is_autonext[0] == 'Track'
                 let w:info = system('playerctl --player=' . s:which_player . ' loop none')
