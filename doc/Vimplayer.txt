@@ -12,11 +12,11 @@
 =============================================================================
 CONTENTS                                                 *Vimplayer-contents*
 
-Intro...................................|Vimplayer-intro|
-Usage...................................|Vimplayer-usage|
-Configuration ..........................|Vimplayer-config|
-License.................................|Vimplayer-license|
-Contributing............................|Vimplayer-contributing|
+1. Intro...................................|Vimplayer-intro|
+2. Usage...................................|Vimplayer-usage|
+3. Configuration ..........................|Vimplayer-config|
+4. License.................................|Vimplayer-license|
+5. About...................................|Vimplayer-about|
 
 
 =============================================================================
@@ -61,6 +61,7 @@ Vimplayer is GPLv3 licensed.
 
 
 ==============================================================================
-5. Contributing                                       *Vimplayer-contributing*
+5. About                                                     *Vimplayer-about*
 
-todo: write how?
+Vimplayer is written by Moein Halvaei. Send your suggestions or anything can
+make this plugin better. E-mail: moeinn.com@gmail.com.
