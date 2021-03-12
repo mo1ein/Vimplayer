@@ -80,7 +80,7 @@ function! s:control(verb)
             call PrevMoc()
         elseif a:verb == 'Current'           " current music info
             call CurrentMoc()
-        elseif a:verb == "Shuffle'           " toggle shuffle
+        elseif a:verb == 'Shuffle'           " toggle shuffle
             call ShuffleMoc()
         elseif a:verb == 'Repeat'            " toggle repeat playlist after end all songs
             call RepeatMoc()
